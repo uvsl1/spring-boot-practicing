@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Properties;
 
 @Entity
 @Table(name = "tb_order_item")
@@ -18,7 +17,6 @@ public class OrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
-    @Autowired
     private OrderItemPK id = new OrderItemPK();
 
     private Integer quantity;
@@ -65,6 +63,10 @@ public class OrderItem implements Serializable {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Double getSubTotal() {
+        return price * quantity;
     }
 
     @Override
